@@ -4,6 +4,15 @@ from tkinter.filedialog import*
 root=Tk()
 root.title("Memoriser")
 
+def additem():
+    listbox.insert(END,entrybox.get())
+    entrybox.delete(0,END)
+
+def deleteitem():
+    l=listbox.curselection()
+    if l:
+        listbox.delete(l)
+
 def openfile():
     a=askopenfile(title="openfile")
     if a is not None:
@@ -21,7 +30,7 @@ def savefile():
 openbutton=Button(root,text="Open",width=15,command=openfile)
 openbutton.pack(side=LEFT)
 
-deletebutton=Button(root,text="Delete",width=15)
+deletebutton=Button(root,text="Delete",width=15,command=deleteitem)
 deletebutton.pack(side=RIGHT)
 
 savebutton=Button(root,text="Save",width=15,command=savefile)
@@ -30,7 +39,7 @@ savebutton.pack(padx=5,pady=5)
 entrybox=Entry(root,width=30)
 entrybox.pack(padx=5,pady=5)
 
-addbutton=Button(root,text="Add",width=15)
+addbutton=Button(root,text="Add",width=15,command=additem)
 addbutton.pack(padx=5,pady=5)
 
 frame=Frame(root)
